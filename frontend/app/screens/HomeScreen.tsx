@@ -15,12 +15,15 @@ import ProgressTracker from '../../components/ProgressTracker';
 import QuranReader from '../../components/QuranReader';
 import VoiceRecorder from '../../components/VoiceRecorder';
 import Colors from '../../constants/Colors';
+import SurahParaSelector from '../../components/SurahParaSelector';   // 👈 new import
 
 const { width } = Dimensions.get('window');
 
 export default function HomeScreen() {
   const [isRecording, setIsRecording] = useState(false);
   const [mistakes, setMistakes] = useState(0);
+  const [selectedSurah, setSelectedSurah] = useState<number | null>(null);  // 👈 new state
+  const [selectedPara, setSelectedPara] = useState<number | null>(null);    // 👈 new state
   const navigation = useNavigation();
 
   const toggleRecording = () => setIsRecording(v => !v);
@@ -51,6 +54,20 @@ export default function HomeScreen() {
             <Ionicons name="settings" size={22} color={Colors.white} />
           </TouchableOpacity>
         </View>
+      </View>
+
+      {/* 👇 New Surah/Para Selector */}
+      <View style={{ marginVertical: 10, paddingHorizontal: 20 }}>
+        <SurahParaSelector
+          onSurahSelect={(id) => setSelectedSurah(id)}
+          onParaSelect={(id) => setSelectedPara(id)}
+        />
+        {(selectedSurah || selectedPara) && (
+          <Text style={{ color: Colors.white, marginTop: 8, textAlign: 'center' }}>
+            {selectedSurah ? `Selected Surah: ${selectedSurah}` : ''}
+            {selectedPara ? ` | Selected Para: ${selectedPara}` : ''}
+          </Text>
+        )}
       </View>
 
       <View style={styles.surahHeader}>
