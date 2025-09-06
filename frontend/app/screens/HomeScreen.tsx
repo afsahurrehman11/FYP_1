@@ -15,15 +15,15 @@ import ProgressTracker from '../../components/ProgressTracker';
 import QuranReader from '../../components/QuranReader';
 import VoiceRecorder from '../../components/VoiceRecorder';
 import Colors from '../../constants/Colors';
-import SurahParaSelector from '../../components/SurahParaSelector';   // 👈 new import
+//import SurahParaSelector from '../../components/SurahParaSelector';   // 👈 new import
 
 const { width } = Dimensions.get('window');
 
 export default function HomeScreen() {
   const [isRecording, setIsRecording] = useState(false);
   const [mistakes, setMistakes] = useState(0);
-  const [selectedSurah, setSelectedSurah] = useState<number | null>(null);  // 👈 new state
-  const [selectedPara, setSelectedPara] = useState<number | null>(null);    // 👈 new state
+  //const [selectedSurah, setSelectedSurah] = useState<number | null>(null);  // 👈 new state
+  //const [selectedPara, setSelectedPara] = useState<number | null>(null);    // 👈 new state
   const navigation = useNavigation();
 
   const toggleRecording = () => setIsRecording(v => !v);

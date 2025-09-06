@@ -11,6 +11,8 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import SurahParaSelector from '../../components/SurahParaSelector'; // 👉 new line added
+
 
 const { width, height } = Dimensions.get('window');
 
@@ -20,6 +22,10 @@ export default function HomeScreen() {
   const [currentHizb, setCurrentHizb] = useState(1);
   const [isRecording, setIsRecording] = useState(false);
   const [mistakes, setMistakes] = useState(0);
+
+  const [selectedSurah, setSelectedSurah] = useState<number | null>(null); // 👉 new line added
+  const [selectedPara, setSelectedPara] = useState<number | null>(null);   // 👉 new line added
+
   const router = useRouter();
 
   const verses = [
@@ -64,7 +70,16 @@ export default function HomeScreen() {
           </TouchableOpacity>
         </View>
       </View>
-
+      
+      {/* Surah & Para Selector */}
+      <View style={{ marginVertical: 10 }}> 
+        <SurahParaSelector 
+          selectedSurah={selectedSurah}              // 👉 new line added
+          setSelectedSurah={setSelectedSurah}        // 👉 new line added
+          selectedPara={selectedPara}                // 👉 new line added
+          setSelectedPara={setSelectedPara}          // 👉 new line added
+        />
+      </View>
       {/* Surah Header */}
       <View style={styles.surahHeader}>
         <View style={styles.decorativeBorder}>
